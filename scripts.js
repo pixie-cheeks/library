@@ -1,9 +1,3 @@
-const myLibrary = [];
-const addButton = document.querySelector('button');
-const booksGrid = document.querySelector('.books-grid');
-
-addButton.addEventListener('click', getBookFromUser);
-
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -11,12 +5,21 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
+const myLibrary = [];
+const addButton = document.querySelector('.add-book');
+const booksGrid = document.querySelector('.books-grid');
+const dialog = document.querySelector('dialog');
+const closeDialogBtn = document.querySelector('.close-button');
+
+addButton.addEventListener('click', getBookFromUser);
+closeDialogBtn.addEventListener('click', () => dialog.close());
+
 function addBookToLibrary(bookObject) {
   myLibrary.push(bookObject);
 }
 
 function getBookFromUser() {
-
+  dialog.showModal();
 }
 
 function displayBooks() {
