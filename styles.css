@@ -1,8 +1,8 @@
 /* Setup */
 @font-face {
-  font-family: 'westmeathregular';
-  src: url('fonts/westmeath-webfont.woff2') format('woff2'),
-    url('fonts/westmeath-webfont.woff') format('woff');
+  font-family: 'daisyregular';
+  src: url('fonts/daisy-webfont.woff2') format('woff2'),
+    url('fonts/daisy-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 
@@ -18,7 +18,7 @@
 
 :root {
   font-size: 62.5%;
-  font-family: 'westmeathregular', sans-serif;
+  font-family: 'daisyregular', sans-serif;
 }
 
 body {
@@ -194,15 +194,4 @@ input[type="checkbox"]:checked::before {
 
 .close-button:active {
   color: rgb(218, 47, 47);
-}
-
-/* Temporary */
-.remove-book {
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: aquamarine;
-  border: none;
-  border-radius: 10px;
-  padding: 1rem;
 }

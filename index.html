@@ -2,56 +2,54 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Library</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="scripts.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
 </head>
 
 <body>
-  <dialog>
-    <button class="close-button">&#10006;</button>
-    <form method="dialog" open="modal">
-      <p>Add a book!</p>
+    <dialog>
+        <button class="close-button">&#10006;</button>
+        <form method="dialog" open="modal">
+            <p>Add a book!</p>
 
-      <label for="title">Title</label>
-      <input type="text" name="title" id="title" maxlength="400">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" maxlength="400" autofocus>
 
-      <label for="author">Author</label>
-      <input type="text" name="author" id="author" maxlength="200">
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author" maxlength="200">
 
-      <label for="pages">Number of Pages</label>
-      <input type="number" name="pages" id="pages" max="10000" min="1">
+            <label for="pages">Number of Pages</label>
+            <input type="number" name="pages" id="pages" max="10000" min="1">
 
-      <div class="checkbox">
-        <label for="read-status">Have you read the book?</label>
-        <div class="check-style"><input type="checkbox" name="read" id="read-status"></div>
-      </div>
+            <div class="checkbox">
+                <label for="read-status">Have you read the book?</label>
+                <div class="check-style"><input type="checkbox" name="read" id="read-status"></div>
+            </div>
 
-      <div class="button-container">
-        <button formmethod="dialog" type="submit" class="dialog-submit">Submit</button>
-      </div>
-    </form>
-  </dialog>
-  <button class="add-book">+ Add book</button>
-  <div class="books-grid">
+            <div class="button-container">
+                <button formmethod="dialog" type="submit" class="dialog-submit">Submit</button>
+            </div>
+        </form>
+    </dialog>
+    <button class="add-book">+ Add book</button>
+    <div class="books-grid"></div>
     <div class="template">
-      <div class="text-field">
-        <div class="descriptor">Title:</div>
-        <div class="title"></div>
-      </div>
-      <div class="text-field">
-        <div class="descriptor">Author:</div>
-        <div class="author"></div>
-      </div>
-      <div class="text-field">
-        <div class="descriptor">Total Pages:</div>
-        <div class="pages"></div>
-      </div>
+        <div class="text-field">
+            <div class="descriptor">Title:</div>
+            <div class="title"></div>
+        </div>
+        <div class="text-field">
+            <div class="descriptor">Author:</div>
+            <div class="author"></div>
+        </div>
+        <div class="text-field">
+            <div class="descriptor">Total Pages:</div>
+            <div class="pages"></div>
+        </div>
     </div>
-  </div>
-  <button class="remove-book">Remove Last</button>
 </body>
 
 </html>
