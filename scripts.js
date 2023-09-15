@@ -1,75 +1,113 @@
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
-
 const myLibrary = [];
 const addButton = document.querySelector('.add-book');
-const booksGrid = document.querySelector('.books-grid');
 const dialog = document.querySelector('dialog');
-const closeDialogBtn = document.querySelector('.close-button');
-const dialogSubmit = document.querySelector('.dialog-submit');
+const submitBookButton = document.querySelector('.dialog-submit');
+const template = document.querySelector('.template');
+const booksGrid = document.querySelector('.books-grid');
+const closeDialogButton = document.querySelector('.close-button');
 
 addButton.addEventListener('click', () => dialog.showModal());
-closeDialogBtn.addEventListener('click', () => dialog.close());
-dialogSubmit.addEventListener('click', addBookToLibrary);
+closeDialogButton.addEventListener('click', () => dialog.close());
+submitBookButton.addEventListener('click', handleBookSubmission);
 
-const title = dialog.querySelector('#title');
-const author = dialog.querySelector('#author');
-const pages = dialog.querySelector('#pages');
-const read = dialog.querySelector('#read');
-
-function addBookToLibrary() {
-    console.log(title.value);
+function Book(title, author, pages, read) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
 }
 
-/* function addBookToLibrary(bookObject) {
-    myLibrary.push(bookObject);
+function addBookToLibrary(bookInfo) {
+  myLibrary.push(bookInfo);
+  displayBooks();
 }
 
-function getBookFromUser(event) {
-    event.preventDefault();
-    const title = dialog.querySelector('#title');
-    const author = dialog.querySelector('#author');
-    const pages = dialog.querySelector('#pages');
-    const haveRead = dialog.querySelector('#read-status');
+function handleBookSubmission() {
+  const titleField = dialog.querySelector('#title');
+  const authorField = dialog.querySelector('#author');
+  const pagesField = dialog.querySelector('#pages');
+  const readField = dialog.querySelector('#read-status');
 
-    addBookToLibrary(
-        new Book(title.value, author.value, pages.value, haveRead.checked)
-    );
-    dialog.close();
+  addBookToLibrary(new Book(
+    titleField.value, authorField.value, pagesField.value, readField.checked
+  ));
 
-    title.value = '';
-    author.value = '';
-    pages.value = '';
-    haveRead.checked = false;
+  clearFields(readField, titleField, authorField, pagesField);
+  dialog.close();
+}
 
-    displayBooks();
+function clearFields(readField, ...otherFields) {
+  readField.checked = false;
+  otherFields.forEach(element => element.value = '');
 }
 
 function displayBooks() {
-    const template = document.querySelector('.template');
+  myLibrary.forEach(book => {
+    if (book.onPage) return;
 
-    for (let i = booksGrid.childElementCount; i <= myLibrary.length; i++) {
-        const newBook = createBookCard(template, myLibrary[i]);
-        // newBook.dataset.index = i;
-        booksGrid.appendChild(newBook);
-    }
+    const card = prepareBookForDisplay(book);
+    booksGrid.appendChild(card);
+  });
 }
 
-function createBookCard(template, bookInfo) {
-    const bookCard = template.cloneNode(true);
-    bookCard.className = 'book-card';
+function getNewBookCard(bookInfo) {
+  const newBook = template.cloneNode(true);
+  const readStatus = newBook.querySelector('.status');
 
-    console.log(bookInfo, bookInfo.author);
-    bookCard.querySelector('.author')
-        .textContent = bookInfo.author;
-    bookCard.querySelector('.title')
-        .textContent = bookInfo.title;
-    bookCard.querySelector('.pages')
-        .textContent = bookInfo.pages;
+  newBook.querySelector('.title').textContent = bookInfo.title;
+  newBook.querySelector('.author').textContent = bookInfo.author;
+  newBook.querySelector('.pages').textContent = bookInfo.pages;
+  newBook.querySelector('.status').classList.add(bookInfo.read);
+  newBook.className = 'book-card';
+  newBook.style.display = '';
 
-    return bookCard;
-} */
+  return newBook;
+}
+
+function getLastBookID() {
+  return document.querySelector('.book-card:last-child')
+    ?.dataset.id || 0;
+}
+
+function prepareBookForDisplay(book) {
+  const bookCard = getNewBookCard(book);
+  book.id = bookCard.dataset.id = Number(getLastBookID()) + 1;
+  book.onPage = true;
+
+  const changeReadButton = bookCard.querySelector('.change-status');
+  const readStatusDisplay = bookCard.querySelector('.status');
+  const removeBookButton = bookCard.querySelector('.delete-button');
+
+  changeReadButton.addEventListener('click', changeReadStatus);
+  removeBookButton.addEventListener('click', removeBook);
+
+  function changeReadStatus() {
+    let classContent = readStatusDisplay.className;
+    if (classContent.includes('false')) {
+      classContent = 'status true';
+      readStatusDisplay.textContent = 'Have Read';
+      book.read = true;
+    } else {
+      classContent = 'status false';
+      readStatusDisplay.textContent = 'Haven\'t Read Yet';
+      book.read = false;
+    }
+
+    readStatusDisplay.className = classContent;
+  }
+
+  function removeBook() {
+    const bookCard = this.parentElement;
+    const id = Number(this.parentElement.dataset.id);
+
+    myLibrary.forEach((element, index) => {
+      if (element.id = id) {
+        myLibrary.splice(index, 1)
+      }
+    });
+
+    bookCard.remove();
+  }
+
+  return bookCard;
+}

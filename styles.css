@@ -1,13 +1,4 @@
 /* Setup */
-@font-face {
-  font-family: 'daisyregular';
-  src: url('fonts/daisy-webfont.woff2') format('woff2'),
-    url('fonts/daisy-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -18,7 +9,7 @@
 
 :root {
   font-size: 62.5%;
-  font-family: 'daisyregular', sans-serif;
+  font-family: 'Times New Roman', sans-serif;
 }
 
 body {
@@ -56,18 +47,17 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, 40rem);
   gap: 4rem;
-}
-
-.books-grid > * {
-  background-color: white;
-  border-radius: 15px;
-  box-shadow: 1px 1px 1px #ccc;
+  align-items: flex-start;
 }
 
 .book-card {
-  padding: 1rem;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 1px 1px 1px #ccc;
+  padding: 2rem 4rem 1rem 1rem;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .text-field {
@@ -194,4 +184,54 @@ input[type="checkbox"]:checked::before {
 
 .close-button:active {
   color: rgb(218, 47, 47);
+}
+
+/* Card buttons */
+.read-field {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.change-status {
+  border: none;
+  font-size: medium;
+  color: rgb(92, 91, 91);
+  background-color: rgb(207, 231, 207);
+  border-radius: 2rem;
+  padding: 1rem;
+  align-self: center;
+}
+
+.status {
+  border-radius: 2rem;
+  padding: 1.5rem;
+  color: white;
+  text-align: center;
+}
+
+.status.true {
+  background-color: rgb(0, 187, 0);
+}
+
+.status.false {
+  background-color: red;
+}
+
+.delete-button {
+  width: 3rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  fill: red;
+}
+
+.delete-button:hover {
+  fill: rgb(153, 12, 12);
+}
+
+.delete-button:active {
+  fill: rgb(207, 48, 48);
 }

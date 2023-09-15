@@ -2,54 +2,67 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js" defer></script>
 </head>
 
 <body>
-    <dialog>
-        <button class="close-button">&#10006;</button>
-        <form method="dialog" open="modal">
-            <p>Add a book!</p>
+  <dialog>
+    <button class="close-button">&#10006;</button>
+    <form method="dialog">
+      <p>Add a book!</p>
 
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" maxlength="400" autofocus>
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" maxlength="400" autofocus>
 
-            <label for="author">Author</label>
-            <input type="text" name="author" id="author" maxlength="200">
+      <label for="author">Author</label>
+      <input type="text" name="author" id="author" maxlength="200">
 
-            <label for="pages">Number of Pages</label>
-            <input type="number" name="pages" id="pages" max="10000" min="1">
+      <label for="pages">Number of Pages</label>
+      <input type="number" name="pages" id="pages" max="10000" min="1">
 
-            <div class="checkbox">
-                <label for="read-status">Have you read the book?</label>
-                <div class="check-style"><input type="checkbox" name="read" id="read-status"></div>
-            </div>
-
-            <div class="button-container">
-                <button formmethod="dialog" type="submit" class="dialog-submit">Submit</button>
-            </div>
-        </form>
-    </dialog>
-    <button class="add-book">+ Add book</button>
-    <div class="books-grid"></div>
-    <div class="template">
-        <div class="text-field">
-            <div class="descriptor">Title:</div>
-            <div class="title"></div>
+      <div class="checkbox">
+        <label for="read-status">Have you read the book?</label>
+        <div class="check-style">
+          <input type="checkbox" name="read" id="read-status">
         </div>
-        <div class="text-field">
-            <div class="descriptor">Author:</div>
-            <div class="author"></div>
-        </div>
-        <div class="text-field">
-            <div class="descriptor">Total Pages:</div>
-            <div class="pages"></div>
-        </div>
+      </div>
+
+      <div class="button-container">
+        <button formmethod="dialog" type="submit" class="dialog-submit">Submit</button>
+      </div>
+    </form>
+  </dialog>
+  <button class="add-book">+ Add book</button>
+  <div class="books-grid"></div>
+  <div class="template">
+    <div class="text-field">
+      <div class="descriptor">Title:</div>
+      <div class="title"></div>
     </div>
+    <div class="text-field">
+      <div class="descriptor">Author:</div>
+      <div class="author"></div>
+    </div>
+    <div class="text-field">
+      <div class="descriptor">Total Pages:</div>
+      <div class="pages"></div>
+    </div>
+    <div class="read-field">
+      <div class="status">Haven't Read Yet</div>
+      <button class="change-status">Change Status</button>
+    </div>
+    <div class="delete-button" title="Remove book from library">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path
+          d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
+      </svg>
+    </div>
+
+  </div>
 </body>
 
 </html>
