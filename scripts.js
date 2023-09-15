@@ -22,11 +22,18 @@ function addBookToLibrary(bookInfo) {
   displayBooks();
 }
 
-function handleBookSubmission() {
+function handleBookSubmission(event) {
+  event.preventDefault();
   const titleField = dialog.querySelector('#title');
   const authorField = dialog.querySelector('#author');
   const pagesField = dialog.querySelector('#pages');
   const readField = dialog.querySelector('#read-status');
+  const inputFields = [titleField, authorField, pagesField, readField];
+
+  if (!inputFields.every(field => field.checkValidity())) {
+    inputFields.forEach(field => field.reportValidity());
+    return;
+  }
 
   addBookToLibrary(new Book(
     titleField.value, authorField.value, pagesField.value, readField.checked
