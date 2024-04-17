@@ -10,11 +10,13 @@ addButton.addEventListener('click', () => dialog.showModal());
 closeDialogButton.addEventListener('click', () => dialog.close());
 submitBookButton.addEventListener('click', handleBookSubmission);
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 }
 
 function addBookToLibrary(bookInfo) {
