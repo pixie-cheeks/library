@@ -32,8 +32,10 @@ function handleBookSubmission(event) {
   const readField = dialog.querySelector('#read-status');
   const inputFields = [titleField, authorField, pagesField, readField];
 
-  if (!inputFields.every(field => field.checkValidity())) {
-    inputFields.forEach(field => field.reportValidity());
+  const firstInvalid = inputFields.find(field => !field.checkValidity());
+  
+  if (firstInvalid) {
+    firstInvalid.reportValidity();
     return;
   }
 
@@ -61,7 +63,6 @@ function displayBooks() {
 
 function getNewBookCard(bookInfo) {
   const newBook = template.cloneNode(true);
-  const readStatus = newBook.querySelector('.status');
 
   newBook.querySelector('.title').textContent = bookInfo.title;
   newBook.querySelector('.author').textContent = bookInfo.author;
